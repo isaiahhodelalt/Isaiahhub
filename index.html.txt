@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Isaiah Hub</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Orbitron">
+<style>
+/* ---------- BASE ---------- */
+body, h1, h2, h3, h4, h5, h6 {
+    font-family: 'Orbitron', sans-serif;
+    margin: 0;
+    background: #0d001a;
+    color: #fff;
+    text-align: center;
+    transition: all .4s;
+}
+/* ---------- LEFT SIDEBAR ---------- */
+.leftbar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 180px;
+    height: 100%;
+    padding-top: 200px;
+    background: rgba(10,0,30,0.95);
+    backdrop-filter: blur(10px);
+    z-index: 10;
+}
+.catbox {
+    margin: 15px 20px;
+    padding: 20px 10px;
+    background: rgba(0,255,204,0.1);
+    border-left: 4px solid #00ffcc;
+    border-radius: 0 12px 12px 0;
+    transition: .4s;
+    cursor: pointer;
+}
+.catbox:hover, .catbox.active {
+    background: #00ffcc;
+    color: #000;
+    transform: translateX(20px);
+    box-shadow: 0 0 20px #00ffcc;
+    animation: pulse 2s infinite;
+}
+@keyframes pulse {
+    0%,100% { box-shadow: 0 0 20px #00ffcc; }
+    50% { box-shadow: 0 0 40px #00ffcc, 0 0 60px #00ffcc; }
+}
+/* ---------- HEADER ---------- */
+.header {
+    margin-left: 200px;
+    padding: 60px 20px 20px;
+    background: linear-gradient(135deg,#1a0033,#000);
+}
+.header h1 {
+    font-size: 70px;
+    background: linear-gradient(90deg,#00ffcc,#ff00cc);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 30px rgba(0,255,204,0.5);
+}
+/* ---------- MAIN AREA ---------- */
+.mainarea {
+    margin-left: 200px;
+    padding: 30px 40px;
+    min-height: 100vh;
+    max-width: 1100px;
+    margin: auto;
+}
+.section-title {
+    color: #00ffcc;
+    font-size: 42px;
+    margin-bottom: 20px;
+}
+.search-input {
+    display: block;
+    margin: 20px auto;
+    padding: 14px 18px;
+    width: 90%;
+    max-width: 560px;
+    border-radius: 12px;
+    border: 1px solid #00ffcc;
+    background: rgba(0,0,0,0.8);
+    color: #00ffcc;
+    font-size: 18px;
+}
+/* ---------- BUTTONS ---------- */
+.itembutton {
+    cursor: pointer;
+    margin: 12px auto;
+    padding: 20px;
+    border: 1px solid #00ffcc;
+    border-radius: 12px;
+    width: 380px;
+    font-size: 21px;
+    transition: .3s;
+    text-align: left;
+}
+.itembutton:hover {
+    background: #00ffcc;
+    color: #000;
+    transform: translateX(25px);
+    box-shadow: 0 0 25px #00ffcc;
+}
+/* ---------- SETTINGS ---------- */
+.setting-option {
+    margin: 10px;
+    padding: 14px 20px;
+    border-radius: 10px;
+    border: 1px solid #00ffcc;
+    width: 220px;
+    cursor: pointer;
+    display: inline-block;
+    transition: .3s;
+}
+.setting-option:hover {
+    background: #00ffcc;
+    color: #000;
+}
+/* ---------- SEARCH ---------- */
+#searchFrame {
+    width: 100%;
+    height: 850px;
+    border: 3px solid #00ffcc;
+    border-radius: 15px;
+    margin-top: 25px;
+    background: #000;
+}
+/* ---------- PROXY TEST ---------- */
+.bigtest {
+    font-size: 24px;
+    padding: 20px;
+    background: #ff00cc;
+    margin: 20px auto;
+    display: block;
+    width: 90%;
+    max-width: 600px;
+}
+.result {
+    font-size: 28px;
+    padding: 25px;
+    margin: 15px auto;
+    border-radius: 20px;
+}
+.working { background: #00ff66; color:#000; }
+.blocked { background: #ff0066; color:#fff; }
+.testing { background: #ffcc00; color:#000; }
+.proxy-note {
+    font-size: 15px;
+    color: #aaa;
+    margin: 20px auto;
+    max-width: 800px;
+    line-height: 1.6;
+}
+</style>
+</head>
+<body>
+<!-- SIDEBAR -->
+<div class="leftbar">
+    <div class="catbox active" onclick="showSection('games',event)">Gamepad<br>GAMES</div>
+    <div class="catbox" onclick="showSection('apps',event)">Mobile<br>APPS</div>
+    <div class="catbox" onclick="showSection('settings',event)">Gear<br>SETTINGS</div>
+    <div class="catbox" onclick="showSection('search',event)">Search<br>SEARCH</div>
+</div>
+<!-- HEADER -->
+<div class="header">
+    <h1 id="mainTitle">Isaiah Hub</h1>
+    <p id="subtitle">Your Games • Apps • Unblocked Web</p>
+    <div style="font-size:20px;margin-top:12px;" id="clock"></div>
+</div>
+<div class="mainarea">
+<!-- ============================= GAMES ============================= -->
+<div id="gamesSection">
+    <h2 class="section-title">Games</h2>
+    <input type="text" class="search-input" id="searchBarGames" placeholder="Search games..." onkeyup="filterItems('gamesSection')">
+    
+    <div onclick="location.href='/1v1.lol.html'" class="itembutton">1v1.LOL</div>
+    <div onclick="location.href='/basketrandom.html'" class="itembutton">Basket Random</div>
+    <div onclick="location.href='/impossiblequiz.html'" class="itembutton">Impossible Quiz</div>
+    <div onclick="location.href='/RetroBowl.html'" class="itembutton">Retro Bowl</div>
+    <div onclick="location.href='/RetroBowlCollege.html'" class="itembutton">Retro Bowl College</div>
+    <div onclick="location.href='/Paper.io.html'" class="itembutton">Paper.io</div>
+    <div onclick="location.href='/Bitlife.html'" class="itembutton">BitLife</div>
+    <div onclick="location.href='/GeometryDashLite.html'" class="itembutton">Geometry Dash Lite</div>
+    <div onclick="location.href='/DriveMad.html'" class="itembutton">Drive Mad</div>
+    <div onclick="location.href='/3dFreeKick.html'" class="itembutton">3D Free Kick</div>
+</div>
+<!-- ============================= APPS ============================= -->
+<div id="appsSection" style="display:none;">
+    <h2 class="section-title">Apps</h2>
+    <input type="text" class="search-input" id="searchBarApps" placeholder="Search apps..." onkeyup="filterItems('appsSection')">
+    <div onclick="location.href='/calculator.html'" class="itembutton">Calculator App</div>
+    <div onclick="location.href='/notes.html'" class="itembutton">Notes App</div>
+</div>
+<!-- ============================= SETTINGS ============================= -->
+<div id="settingsSection" style="display:none;">
+    <h2 class="section-title">Settings</h2>
+    <div class="setting-option" onclick="changeTheme('dark')">Dark</div>
+    <div class="setting-option" onclick="changeTheme('light')">Light</div>
+    <div class="setting-option" onclick="changeTheme('neon')">Neon</div>
+    <div class="setting-option" onclick="window.open('/about.html','_blank')">About</div>
+</div>
+<!-- ============================= SEARCH / PROXY ============================= -->
+<div id="searchSection" style="display:none;">
+    <h2 class="section-title">Isaiah Search Engine</h2>
+    <input type="text" id="isaiahSearchInput" class="search-input"
+           placeholder="youtube.com • roblox.com • discord.com"
+           onkeypress="if(event.key==='Enter') isaiahSearch()">
+    <select id="proxySelect">
+        <option value="rammerhead">Rammerhead (BEST 2025 – Stays Logged In!)</option>
+        <option value="croxy">CroxyProxy</option>
+        <option value="proxysite">ProxySite.com</option>
+        <option value="genmirror">GenMirror</option>
+        <option value="sslunblocker">SSL Unblocker</option>
+        <option value="megaproxy">Mega Proxy</option>
+        <option value="proxfree">ProxFree</option>
+        <option value="direct">Direct (no proxy)</option>
+    </select>
+    <button onclick="isaiahSearch()">GO</button>
+    <button class="bigtest" onclick="startChromebookTest()">TEST ALL PROXIES</button>
+    <button onclick="document.getElementById('searchFrame').src='about:blank'">Clear</button>
+    <div class="proxy-note">
+        Rammerhead keeps you logged in forever — YouTube, Discord, Roblox, Gmail, etc.  
+        Dec 2025 Verified • Green = works at your school.
+    </div>
+    <div id="testResult"></div>
+    <iframe id="searchFrame"
+            sandbox="allow-scripts allow-forms allow-same-origin allow-popups allow-downloads"></iframe>
+</div>
+</div>
+<script>
+/* ---------- CLOCK ---------- */
+setInterval(() => {
+    document.getElementById("clock").innerText = new Date().toLocaleTimeString();
+}, 1000);
+/* ---------- CLOAKING ---------- */
+if (location.search.includes("classroom") || location.search.includes("classlink")) {
+    document.title = "Google Classroom";
+    document.getElementById("mainTitle").innerText = "My Classes";
+    document.getElementById("subtitle").innerText = "Loading assignments...";
+}
+/* ---------- PANIC KEY ---------- */
+document.addEventListener("keydown", e => {
+    if (e.key === "`" || e.key === "F12") {
+        window.open("https://classroom.google.com", "_blank");
+        location.href = "https://docs.google.com";
+    }
+});
+/* ---------- SECTION SWITCH ---------- */
+function showSection(section, e) {
+    ["games","apps","settings","search"].forEach(id =>
+        document.getElementById(id + "Section").style.display = "none"
+    );
+    document.getElementById(section + "Section").style.display = "block";
+    document.querySelectorAll(".catbox").forEach(c => c.classList.remove("active"));
+    e.currentTarget.classList.add("active");
+    if(section === "search")
+        setTimeout(() => document.getElementById("isaiahSearchInput").focus(), 200);
+}
+/* ---------- SEARCH FILTER ---------- */
+function filterItems(sectionId) {
+    let term = document
+        .getElementById(sectionId === "appsSection" ? "searchBarApps" : "searchBarGames")
+        .value.toLowerCase();
+    document.querySelectorAll("#" + sectionId + " .itembutton").forEach(btn => {
+        btn.style.display = btn.innerText.toLowerCase().includes(term) ? "" : "none";
+    });
+}
+/* ---------- THEMES ---------- */
+function changeTheme(t) {
+    if (t === "dark") {
+        document.body.style.background = "#0d001a";
+        document.body.style.color = "#fff";
+    }
+    if (t === "light") {
+        document.body.style.background = "#f0f0f0";
+        document.body.style.color = "#000";
+    }
+    if (t === "neon") {
+        document.body.style.background = "#000";
+        document.body.style.color = "#00ffcc";
+    }
+}
+/* ---------- PROXIES + SEARCH ---------- */
+function isaiahSearch() {
+    let input = document.getElementById("isaiahSearchInput").value.trim();
+    if (!input) input = "youtube.com";
+    let url = input.startsWith("http") ? input : "https://" + input;
+    let choice = document.getElementById("proxySelect").value;
+    let frame = document.getElementById("searchFrame");
+    const proxies = {
+        rammerhead: `https://demo-opensource.rammerhead.org/session/?url=${btoa(url)}`,
+        croxy: `https://www.croxyproxy.com/?url=${encodeURIComponent(url)}`,
+        proxysite: `https://www.proxysite.com/?url=${encodeURIComponent(url)}`,
+        genmirror: `https://genmirror.com/?u=${encodeURIComponent(url)}`,
+        sslunblocker: `https://sslunblocker.org/?url=${encodeURIComponent(url)}`,
+        megaproxy: `https://megaproxy.org/?url=${encodeURIComponent(url)}`,
+        proxfree: `https://www.proxfree.com/?url=${encodeURIComponent(url)}`,
+        direct: url
+    };
+    frame.src = proxies[choice] || url;
+}
+/* ---------- PROXY TESTER ---------- */
+let testIndex = 0;
+const testList = [
+    {name:"Rammerhead", url:"https://demo-opensource.rammerhead.org/"},
+    {name:"CroxyProxy", url:"https://www.croxyproxy.com/"},
+    {name:"ProxySite", url:"https://www.proxysite.com/"},
+    {name:"GenMirror", url:"https://genmirror.com/"},
+    {name:"SSL Unblocker", url:"https://sslunblocker.org/"},
+    {name:"Mega Proxy", url:"https://megaproxy.org/"},
+    {name:"ProxFree", url:"https://www.proxfree.com/"}
+];
+function startChromebookTest() {
+    testIndex = 0;
+    document.getElementById("testResult").innerHTML =
+        "<div class='result testing'>Testing 2025 proxies… Rammerhead usually wins</div>";
+    testNext();
+}
+function testNext() {
+    if (testIndex >= testList.length) {
+        document.getElementById("testResult").innerHTML +=
+            "<br><b>DONE! Green = working at your school</b>";
+        return;
+    }
+    const p = testList[testIndex];
+    const div = document.createElement("div");
+    div.className = "result testing";
+    div.innerHTML = p.name + "...";
+    document.getElementById("testResult").appendChild(div);
+    document.getElementById("searchFrame").src = p.url;
+    let ok = false;
+    const check = setInterval(() => {
+        try {
+            if (document.getElementById("searchFrame").contentDocument?.body?.innerHTML?.length > 2000) {
+                ok = true;
+                clearInterval(check);
+            }
+        } catch {}
+    }, 1000);
+    setTimeout(() => {
+        clearInterval(check);
+        div.className = ok ? "result working" : "result blocked";
+        div.innerHTML = ok ? "WORKING " + p.name : "BLOCKED " + p.name;
+        testIndex++;
+        setTimeout(testNext, 1800);
+    }, 14000);
+}
+</script>
+</body>
+</html>
+
