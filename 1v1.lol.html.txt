@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>1v1.LOL - Isaiah's Hub</title>
+  <style>
+    * { margin:0; padding:0; overflow:hidden; }
+    html, body { height:100%; background:#000; }
+    #gameContainer, canvas { width:100% !important; height:100% !important; }
+    .webgl-content { width:100vw; height:100vh; }
+  </style>
+</head>
+<body>
+
+<div class="webgl-content">
+  <div id="gameContainer"></div>
+</div>
+
+<!-- Unity Loader + Game Files -->
+<script src="https://cdn.jsdelivr.net/gh/n-101-1/1@main/UnityProgress.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/n-101-1/1@main/2.7.js"></script>
+<script>
+  var gameInstance;
+  window.onload = function () {
+    gameInstance = UnityLoader.instantiate("gameContainer", "https://cdn.jsdelivr.net/gh/n-101-1/1@main/2.7.json", {
+      onProgress: UnityProgress,
+      Module: { onRuntimeInitialized: function () { UnityProgress(gameInstance, "complete"); } }
+    });
+  };
+</script>
+
+<!-- Firebase stuff (keeps login & leaderboards working) -->
+<script src="https://cdn.jsdelivr.net/gh/n-101-1/1@main/1firebase-app.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/n-101-1/1@main/1firebase-auth.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/n-101-1/1@main/1firebase-firestore.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/n-101-1/1@main/1firebase.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/n-101-1/1@main/1login.js?v=2"></script>
+<script src="https://cdn.jsdelivr.net/gh/n-101-1/1@main/1firestore.js"></script>
+<script>initializeFireBase();</script>
+
+</body>
+</html>
